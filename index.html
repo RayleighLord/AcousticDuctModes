@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Explore analytic acoustic pressure modes traveling through a hard-walled cylindrical duct."
+    />
+    <link rel="icon" href="./logo.svg" type="image/svg+xml" />
+    <title>Cylindrical Duct Acoustic Modes</title>
+  </head>
+  <body>
+    <div id="app-shell" class="app-shell" data-ui-hidden="false">
+      <h1 id="page-heading" class="sr-only">Cylindrical Duct Acoustic Modes</h1>
+
+      <main class="duct-panel" aria-labelledby="page-heading">
+        <div
+          id="duct-stage"
+          class="duct-stage"
+          role="region"
+          tabindex="0"
+          aria-label="Interactive three-dimensional cylindrical duct pressure field"
+          aria-describedby="duct-description camera-hint"
+          aria-busy="true"
+        ></div>
+
+        <section
+          id="formula-card"
+          class="formula-card ui-chrome"
+          aria-label="Selected cylindrical duct pressure mode"
+        >
+          <div class="formula-card__equations">
+            <div id="pressure-math" class="pressure-readout"></div>
+          </div>
+          <span class="formula-card__divider" aria-hidden="true"></span>
+          <p id="regime-label" class="formula-card__regime" data-regime="propagating">
+            PROPAGATING
+          </p>
+        </section>
+
+        <div class="view-controls">
+          <button
+            id="front-camera"
+            class="pill-button ui-chrome"
+            type="button"
+            title="Front view (F)"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="7.5" />
+              <circle class="button-cutout" cx="12" cy="12" r="3" />
+              <path d="M11.25 2.8h1.5v3.1h-1.5zM11.25 18.1h1.5v3.1h-1.5zM2.8 11.25h3.1v1.5H2.8zM18.1 11.25h3.1v1.5h-3.1z" />
+            </svg>
+            <span>Front</span>
+          </button>
+
+          <button
+            id="reset-camera"
+            class="pill-button ui-chrome"
+            type="button"
+            title="Reset view (Home or 0)"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5.4 7.2A8 8 0 1 1 4 12h2.2a5.8 5.8 0 1 0 1.1-3.4L10 11H3V4l2.4 3.2Z" />
+            </svg>
+            <span>Reset</span>
+          </button>
+
+          <button
+            id="ui-visibility-toggle"
+            class="pill-button ui-visibility-toggle"
+            type="button"
+            aria-controls="mode-controls formula-card front-camera reset-camera playback-controls camera-hint"
+            aria-expanded="true"
+            aria-pressed="false"
+            aria-label="Hide UI"
+            title="Hide UI (H)"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M2.2 12s3.6-6 9.8-6 9.8 6 9.8 6-3.6 6-9.8 6-9.8-6-9.8-6Zm9.8 3.2A3.2 3.2 0 1 0 12 8.8a3.2 3.2 0 0 0 0 6.4Z" />
+              <path class="visibility-slash" d="M4 4 20 20" />
+            </svg>
+            <span data-ui-toggle-label>Hide UI</span>
+          </button>
+        </div>
+
+        <div class="bottom-controls ui-chrome">
+          <div id="playback-controls" class="playback-controls" aria-label="Animation controls">
+            <button
+              id="animation-toggle"
+              class="animation-toggle"
+              type="button"
+              aria-pressed="true"
+              aria-label="Pause pressure animation"
+              title="Pause pressure animation (Space)"
+            >
+              <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m8 5 11 7-11 7V5Z" />
+              </svg>
+              <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 5h4v14H7V5Zm6 0h4v14h-4V5Z" />
+              </svg>
+              <span data-animation-toggle-label>Pause</span>
+            </button>
+          </div>
+
+          <p id="camera-hint" class="camera-hint">
+            Drag to rotate <span aria-hidden="true">·</span> Scroll or pinch to zoom
+          </p>
+        </div>
+
+        <div id="duct-loading" class="duct-loading ui-chrome" role="status">
+          <span class="loading-wave" aria-hidden="true"></span>
+          <span>Preparing pressure field…</span>
+        </div>
+
+        <section id="duct-fallback" class="duct-fallback" aria-live="polite" hidden>
+          <p id="duct-fallback-message">The three-dimensional view is unavailable.</p>
+          <button id="retry-renderer" type="button">Retry</button>
+        </section>
+
+        <p id="duct-description" class="sr-only">
+          An open cylindrical duct whose shell and two sampling planes show instantaneous signed
+          acoustic pressure. The visible ends impose no acoustic boundary condition.
+        </p>
+      </main>
+
+      <aside id="mode-controls" class="mode-controls ui-chrome" aria-label="Mode controls">
+        <header class="mode-controls__header">
+          <div class="mode-controls__title" aria-hidden="true">Cylindrical Duct Acoustic Modes</div>
+        </header>
+
+        <div id="frequency-control" class="frequency-control-host"></div>
+        <div id="mode-selectors" class="mode-selectors-host"></div>
+      </aside>
+
+      <p id="interaction-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
