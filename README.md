@@ -2,6 +2,6 @@
 
 [Open the interactive explorer](https://rayleighlord.github.io/AcousticDuctModes/)
 
-Explore propagating, cut-off, and evanescent pressure modes in a rigid cylindrical duct.
+Explore pressure modes in a rigid cylindrical duct.
 
 [![Acoustic duct modes explorer](docs/acoustic-duct-modes-explorer.png)](https://rayleighlord.github.io/AcousticDuctModes/)
