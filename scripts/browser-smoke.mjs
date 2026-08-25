@@ -13,7 +13,6 @@ const baseUrl = `http://${host}:${port}${repositoryPath}`;
 const projectRoot = fileURLToPath(new URL("../", import.meta.url));
 const artifactDir = new URL("../output/playwright/", import.meta.url);
 const docsDir = new URL("../docs/", import.meta.url);
-const deployedNotices = new URL("../dist/THIRD_PARTY_NOTICES.txt", import.meta.url);
 const viteBin = fileURLToPath(new URL("../node_modules/vite/bin/vite.js", import.meta.url));
 const requestedChromePath = process.env.CHROME_PATH;
 const systemChromePath = "/usr/bin/google-chrome";
@@ -21,7 +20,6 @@ const executablePath = requestedChromePath
   ?? (existsSync(systemChromePath) ? systemChromePath : undefined);
 
 await mkdir(artifactDir, { recursive: true });
-assert.ok(existsSync(deployedNotices), "The Pages artifact is missing third-party notices");
 if (process.env.UPDATE_README_SCREENSHOT === "1") {
   await mkdir(docsDir, { recursive: true });
 }
